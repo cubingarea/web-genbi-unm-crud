@@ -32,7 +32,7 @@ CREATE TABLE IF NOT EXISTS `alumnis` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table web_genbi.alumnis: ~0 rows (approximately)
+-- Dumping data for table web_genbi.alumnis: ~1 rows (approximately)
 INSERT INTO `alumnis` (`id`, `nama`, `email`, `prodi`, `fakultas`, `tahun_lulus`, `created_at`, `updated_at`) VALUES
 	(3, 'agus', 'agus@gmail.com', 'teknik komputer', 'teknik', '2022', '2024-07-04 17:38:18', '2024-07-04 17:38:18');
 
@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS `beritas` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table web_genbi.beritas: ~1 rows (approximately)
+-- Dumping data for table web_genbi.beritas: ~0 rows (approximately)
 
 -- Dumping structure for table web_genbi.failed_jobs
 CREATE TABLE IF NOT EXISTS `failed_jobs` (
@@ -65,6 +65,43 @@ CREATE TABLE IF NOT EXISTS `failed_jobs` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
 -- Dumping data for table web_genbi.failed_jobs: ~0 rows (approximately)
+
+-- Dumping structure for table web_genbi.kontakpenguruses
+CREATE TABLE IF NOT EXISTS `kontakpenguruses` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `no_telp` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `jabatan` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `periode` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `kontakpenguruses_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table web_genbi.kontakpenguruses: ~1 rows (approximately)
+INSERT INTO `kontakpenguruses` (`id`, `nama`, `email`, `no_telp`, `jabatan`, `periode`, `created_at`, `updated_at`) VALUES
+	(1, 'agus', 'agus@gmail.com', '081341498382', 'asdasd', '2023', '2024-07-07 20:44:25', '2024-07-07 20:44:25');
+
+-- Dumping structure for table web_genbi.mahasiswaberprestasis
+CREATE TABLE IF NOT EXISTS `mahasiswaberprestasis` (
+  `id` bigint unsigned NOT NULL AUTO_INCREMENT,
+  `nama` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `prodi` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `fakultas` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `angkatan` year NOT NULL,
+  `prestasi` text COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL,
+  PRIMARY KEY (`id`),
+  UNIQUE KEY `mahasiswaberprestasis_email_unique` (`email`)
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+-- Dumping data for table web_genbi.mahasiswaberprestasis: ~1 rows (approximately)
+INSERT INTO `mahasiswaberprestasis` (`id`, `nama`, `email`, `prodi`, `fakultas`, `angkatan`, `prestasi`, `created_at`, `updated_at`) VALUES
+	(1, 'agus', 'agus@gmail.com', 'teknik komputer', 'teknik', '2024', 'asdasdass', '2024-07-07 20:36:07', '2024-07-07 20:36:07');
 
 -- Dumping structure for table web_genbi.media
 CREATE TABLE IF NOT EXISTS `media` (
@@ -100,9 +137,9 @@ CREATE TABLE IF NOT EXISTS `migrations` (
   `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 
--- Dumping data for table web_genbi.migrations: ~0 rows (approximately)
+-- Dumping data for table web_genbi.migrations: ~13 rows (approximately)
 INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(1, '2014_10_12_000000_create_users_table', 1),
 	(2, '2014_10_12_100000_create_password_reset_tokens_table', 1),
@@ -110,7 +147,13 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 	(4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
 	(5, '2024_07_05_011451_create_alumnis_table', 2),
 	(6, '2024_07_05_021709_create_beritas_table', 3),
-	(7, '2024_07_05_033023_create_media_table', 4);
+	(7, '2024_07_05_033023_create_media_table', 4),
+	(8, '2024_07_08_024939_create_mahasiswaberprestasis_table', 5),
+	(9, '2024_07_08_041449_create_kontakpengurus_table', 6),
+	(10, '2024_07_08_042523_create_mahasiswaberprestasis_table', 7),
+	(11, '2024_07_08_043154_create_mahasiswaberprestasis_table', 8),
+	(12, '2024_07_08_043652_create_kontakpenguruses_table', 9),
+	(13, '2024_07_08_044205_create_kontakpenguruses_table', 10);
 
 -- Dumping structure for table web_genbi.password_reset_tokens
 CREATE TABLE IF NOT EXISTS `password_reset_tokens` (
@@ -157,7 +200,7 @@ CREATE TABLE IF NOT EXISTS `users` (
 
 -- Dumping data for table web_genbi.users: ~1 rows (approximately)
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-	(1, 'admin', 'admin@admin.com', NULL, '$2y$12$gqkoLPFSkYWka1CW49s3kucdFuPlDosCZ7.Z0UXp/nbJm9UR0BPr6', 'ZL854XIgTnekXPxDROfdIwGe8mnXdntJf7RkMoYme5a1cVplDzHlpclKOvns', '2024-07-04 17:12:38', '2024-07-04 17:12:38');
+	(1, 'admin', 'admin@admin.com', NULL, '$2y$12$gqkoLPFSkYWka1CW49s3kucdFuPlDosCZ7.Z0UXp/nbJm9UR0BPr6', '43ekjLbPlNZo3XQrNErDLnhEnocUvpHPEwYkhXdzzR1iFNcNQwHp1nD47ZUv', '2024-07-04 17:12:38', '2024-07-04 17:12:38');
 
 /*!40103 SET TIME_ZONE=IFNULL(@OLD_TIME_ZONE, 'system') */;
 /*!40101 SET SQL_MODE=IFNULL(@OLD_SQL_MODE, '') */;

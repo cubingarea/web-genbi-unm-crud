@@ -47,11 +47,14 @@ class BeritaResource extends Resource
                             ->required(),
                         FileUpload::make('gambar')
                             ->image()
+                            ->nullable()
                             ->directory('berita-gambar'),
                     ])
                     ->columns(1),
             ]);
     }
+
+    
 
     public static function table(Table $table): Table
     {
